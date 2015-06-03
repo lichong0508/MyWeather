@@ -71,6 +71,7 @@ public class WeatherActivity extends Activity implements OnClickListener{
 		switchCity = (Button) findViewById(R.id.switch_city);
 		refreshWeather = (Button) findViewById(R.id.refresh_weather);
 		String countyCode = getIntent().getStringExtra("county_code");
+		String countyName = getIntent().getStringExtra("county_name");
 		if (!TextUtils.isEmpty(countyCode)) {
 			// 有县级代号时就去查询天气
 			publishText.setText("同步中...");
@@ -119,10 +120,14 @@ public class WeatherActivity extends Activity implements OnClickListener{
 	 * 查询天气代号所对应的天气。
 	 */
 	private void queryWeatherInfo(String weatherCode) {
-		String address = "http://www.weather.com.cn/data/cityinfo/" + weatherCode + ".html";
+		String address = "http://apis.baidu.com/apistore/weatherservice/cityid" + "?" + "cityid="+weatherCode;
 		queryFromServer(address, "weatherCode");
 	}
-	
+//	private void newQueryWeatherInfo(String countyName){
+//		String address = "http://apis.baidu.com/apistore/weatherservice/cityname"+"?"+"cityname="+countyName;
+//		//String address1 = "http://apis.baidu.com/apistore/weatherservice/cityid"+"?"+"cityid=101010100";
+//		queryFromServer(address, "weatherCode");
+//	}
 	/**
 	 * 根据传入的地址和类型去向服务器查询天气代号或者天气信息。
 	 */

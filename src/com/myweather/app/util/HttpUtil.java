@@ -18,6 +18,8 @@ public class HttpUtil {
 					URL url = new URL(address);
 					connection = (HttpURLConnection) url.openConnection();
 					connection.setRequestMethod("GET");
+					connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+					connection.setRequestProperty("apikey","6a65544b939b4bd9ac88619009c89919");
 					connection.setConnectTimeout(8000);
 					connection.setReadTimeout(8000);
 					InputStream in = connection.getInputStream();
@@ -27,6 +29,7 @@ public class HttpUtil {
 					while ((line = reader.readLine()) != null) {
 						response.append(line);
 					}
+					reader.close();
 					if (listener != null) {
 						listener.onFinish(response.toString());
 					}
